@@ -1,5 +1,9 @@
 package it.unibs.fp.mylib.esameArnaldo;
 
+/**
+ * la classe legge l'XML creando una mappa con le informazioni ricavate
+ */
+
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -22,13 +26,7 @@ public class Mappa {
         XMLInputFactory xmlif = null;
         XMLStreamReader xmlr = null;
 
-        for (int i = 0; i < xmlr.getAttributeCount (); i++){
-            if (xmlr.getLocalName ().equals ("width")){
-                numeroColonne = Integer.parseInt (xmlr.getAttributeValue (i));
-            }else if (xmlr.getLocalName ().equals ("height")){
-                numeroRighe = Integer.parseInt (xmlr.getAttributeValue (i));
-            }
-        }
+
 
         try{
             xmlif = XMLInputFactory.newInstance();
@@ -89,13 +87,23 @@ public class Mappa {
                         break;
                 }
 
+                for (int i = 0; i < xmlr.getTextLength (); i++){
+                    if (xmlr.getLocalName ().equals ("width")){
+                        numeroColonne = Integer.parseInt (xmlr.getAttributeValue (i));
+                    }else if (xmlr.getLocalName ().equals ("height")){
+                        numeroRighe = Integer.parseInt (xmlr.getAttributeValue (i));
+                    }
+                }
 
                 xmlr.next();
+
+
 
             }
         } catch (XMLStreamException e) {
             e.printStackTrace();
         }
+
         System.out.println("\nCaricamento completato!");
         return mappa;
     }

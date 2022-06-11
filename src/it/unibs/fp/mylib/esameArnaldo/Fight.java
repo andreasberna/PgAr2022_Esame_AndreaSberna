@@ -1,5 +1,8 @@
 package it.unibs.fp.mylib.esameArnaldo;
 
+/**
+ * la classe possiede i vari metodi per generare il danno del player e quello del mostro e li richiama in un metodo in cui viene gestito lo scontro
+ */
 
 
 import java.util.Random;
@@ -34,7 +37,7 @@ public class Fight{
     }
 
     public void eseguiScontro(){
-
+        player.scegliArma ();
         do{
             mostro.setVitaIniziale (mostro.getVitaIniziale () - generaDannoP ());
             player.setVitaIniziale (player.getVitaIniziale () - generaDannoM ());

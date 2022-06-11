@@ -1,6 +1,6 @@
 package it.unibs.fp.mylib.esameArnaldo;
 
-import it.unibs.fp.mylib.InputDati;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -45,7 +45,8 @@ public class Chest {
         System.out.println ("\n premere 'E' per interagire");
         System.out.println ("-------------------------");
 
-        char carattereDiScelta = InputDati.leggiChar ("");
+        Scanner scanner = new Scanner(System.in);
+        char carattereDiScelta = scanner.next().charAt(0);
         if (carattereDiScelta == 'e' || carattereDiScelta == 'E') {
             System.out.println (getContenuto ().toString ());
             isOpen = true;

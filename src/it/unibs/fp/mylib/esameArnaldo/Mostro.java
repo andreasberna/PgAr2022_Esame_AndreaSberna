@@ -10,7 +10,7 @@ public class Mostro {
     int attaccoIniziale = 5;
     int difesaIniziale = 5;
     int arma;
-    String str = "Dijkstra";
+
 
     public Mostro(String nomeMostro, int vitaIniziale, int attaccoIniziale, int difesaIniziale, int arma) {
         this.nomeMostro = nomeMostro;
@@ -28,7 +28,7 @@ public class Mostro {
     }
 
     public String setNomeMostro() {
-        this.nomeMostro = findPermutations (str) ;
+        this.nomeMostro = findPermutations ("Dijkstra") ;
         return this.nomeMostro;
     }
 

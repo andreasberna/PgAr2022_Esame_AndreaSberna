@@ -1,8 +1,10 @@
 package it.unibs.fp.mylib.esameArnaldo;
 
+/**
+ * la classe fornisce tutte le informazioni riguardanti il player del gioco e i metodi per potersi muovere ed eseguire le azioni
+ */
 
 
-import it.unibs.fp.mylib.InputDati;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,7 +41,8 @@ public class Personaggio {
     }
 
     public Personaggio generaPersonaggio(){
-        String nome = InputDati.leggiStringaNonVuota ("inserire il nome dell'eroe: ");
+        Scanner scan = new Scanner (System.in);
+        String nome = scan.next ();
         Personaggio p = new Personaggio (nome, getVitaIniziale (), getValoreAttaccoBase (), getValoreDifesaBase (), getPosizione (), getPotenza (), getArma ());
         return p;
     }
@@ -96,6 +99,9 @@ public class Personaggio {
         this.arma = arma;
     }
 
+    /**
+     * il metodo movimento effettua un reset della posizione del giocatore in qulla nuova, controlla se la casella è libera e in questo caso muove il personaggio, oppure analizza le possibilità di interazione del perosnaggio con la casella
+     */
     public void movimento(){
         for(int i = 0; i < getNumeroColonne; i++) {
             for (int j = 0; j < getNumeroRighe; j++){
@@ -109,6 +115,10 @@ public class Personaggio {
         char lettera = scanner.next().charAt(0);
         switch (lettera){
             case 'w':
+                if (mappa[getPosizione ()[0]][getPosizione ()[1] + 1] > getNumeroRighe){
+                    System.out.println ("mossa impossibile, hai raggiunto il bordo superiore della mappa. Non sei mica in un Open World");
+                    break;
+                }
                 if (mappa[getPosizione ()[0]][getPosizione ()[1] + 1] == '#'){
                     System.out.println ("mossa non valida, c'è un muro");
                     break;
@@ -131,6 +141,10 @@ public class Personaggio {
                     System.exit (1);
                 break;
             case 's':
+                if (mappa[getPosizione ()[0]][getPosizione ()[1] - 1] < getNumeroRighe){
+                    System.out.println ("mossa impossibile, hai raggiunto il bordo inferiore della mappa. Non sei mica in un Open World");
+                    break;
+                }
                 if (mappa[getPosizione ()[0]][getPosizione ()[1] - 1] == '#'){
                     System.out.println ("mossa non valida, c'è un muro");
                     break;
@@ -153,6 +167,10 @@ public class Personaggio {
                 System.exit (1);
                 break;
             case 'a':
+                if (mappa[getPosizione ()[0] - 1][getPosizione ()[1]] < getNumeroColonne){
+                    System.out.println ("mossa impossibile, hai raggiunto il bordo sinistro della mappa. Non sei mica in un Open World");
+                    break;
+                }
                 if (mappa[getPosizione ()[0] - 1][getPosizione ()[1]] == '#'){
                     System.out.println ("mossa non valida, c'è un muro");
                     break;
@@ -170,11 +188,17 @@ public class Personaggio {
                     if (isAlive) setPosizione (new int[]{getPosizione ()[0] - 1, getPosizione ()[1]});
                 }else if (mappa[getPosizione ()[0] -1 ][getPosizione ()[1]] == '.'){
                     setPosizione (new int[]{getPosizione ()[0] - 1, getPosizione ()[1]});
-                }else if (mappa[getPosizione ()[0] - 1][getPosizione ()[1]] == 'K')
+                }else if (mappa[getPosizione ()[0] - 1][getPosizione ()[1]] == 'K'){
                     System.out.println ("GIOCO COMPLETATO");
-                System.exit (1);
+                    System.exit (1);
+                }
+
                 break;
             case 'd':
+                if (mappa[getPosizione ()[0] + 1][getPosizione ()[1]] > getNumeroColonne){
+                    System.out.println ("mossa impossibile, hai raggiunto il bordo destro della mappa. Non sei mica in un Open World");
+                    break;
+                }
                 if (mappa[getPosizione ()[0] + 1][getPosizione ()[1]] == '#'){
                     System.out.println ("mossa non valida, c'è un muro");
                     break;
@@ -201,7 +225,9 @@ public class Personaggio {
         }
     }
 
-
+    /**
+     * azioni permette all'utente di bere una pozione prima di avanzare di casella
+     */
     public void azioni(){
         int valoreScelto = 0;
         System.out.println ("-----------------");
@@ -227,6 +253,42 @@ public class Personaggio {
             default:
                 System.out.println ("hai scelto di riprendere subito la tua avventura");
                 break;
+
+        }
+    }
+
+    public void scegliArma(){
+        int armaScelta = 0;
+        try {
+            BufferedReader leggi = new BufferedReader (new InputStreamReader (System.in));
+            armaScelta = Integer.parseInt (leggi.readLine ());
+        } catch (IOException e) {
+            e.printStackTrace ();
+        }
+        for (Oggetti o : inventario){
+           if(o.equals (Oggetti.Arma.class)){
+               o.toString ();
+               System.out.println ("\n----------------------------");
+               System.out.println ("\n vuoi scegliere quest'arma? ");
+               System.out.println ("1 - SI \n2 - NO");
+               System.out.println ("\n----------------------------");
+
+               try {
+                   BufferedReader leggi = new BufferedReader (new InputStreamReader (System.in));
+                   armaScelta = Integer.parseInt (leggi.readLine ());
+               } catch (IOException e) {
+                   e.printStackTrace ();
+               }
+               switch (armaScelta){
+                   case 1:
+                       setArma ((Oggetti.Arma) o);
+                       break;
+                   case 2:
+                       continue;
+
+               }
+           }
+
 
         }
     }
