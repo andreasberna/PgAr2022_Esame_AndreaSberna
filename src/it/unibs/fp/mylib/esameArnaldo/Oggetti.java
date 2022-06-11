@@ -39,6 +39,7 @@ public class Oggetti {
             Arma a = new Arma (nomeA, potenzaA);
             return a;
         }
+
     }
 
     public class Scudo extends Oggetti {
@@ -62,7 +63,7 @@ public class Oggetti {
         }
     }
 
-    public class Pozione extends Oggetti{
+    public static class Pozione extends Oggetti{
         int vitaGenerata;
 
         public Pozione(int vitaGenerata) {
@@ -93,5 +94,6 @@ public class Oggetti {
         if (checkValue[valore] == 3) {pozione.generaPozione (); return pozione;}
         return null;
     }
+
 
 }

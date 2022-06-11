@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mappa width="5" height="5">
+	<row>
+		<cell>.</cell>
+		<cell>.</cell>
+		<cell>.</cell>
+		<cell>.</cell>
+		<cell>.</cell>
+	</row>
+	<row>
+		<cell>.</cell>
+		<cell>.</cell>
+		<cell>D</cell>
+		<cell>.</cell>
+		<cell>.</cell>
+	</row>
+	<row>
+		<cell>.</cell>
+		<cell>.</cell>
+		<cell>.</cell>
+		<cell>.</cell>
+		<cell>.</cell>
+	</row>
+	<row>
+		<cell>.</cell>
+		<cell>.</cell>
+		<cell>.</cell>
+		<cell>.</cell>
+		<cell>.</cell>
+	</row>
+	<row>
+		<cell>.</cell>
+		<cell>.</cell>
+		<cell>T</cell>
+		<cell>.</cell>
+		<cell>.</cell>
+	</row>
+</mappa>

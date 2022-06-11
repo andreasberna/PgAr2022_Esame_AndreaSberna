@@ -4,17 +4,14 @@ package it.unibs.fp.mylib.esameArnaldo;
 
 import java.util.Random;
 
-public class Fight {
+public class Fight{
     Personaggio player;
     Mostro mostro;
     double modificatore;
     int dannoP;
     int dannoM;
 
-    {
-        player.generaPersonaggio ();
-        mostro = mostro.generaMostro ();
-    }
+
 
     public double generaModificatore(){
         int prob = (int) Math.random ();
@@ -36,11 +33,14 @@ public class Fight {
         return dannoM;
     }
 
-    public void scontro(){
+    public void eseguiScontro(){
+
         do{
             mostro.setVitaIniziale (mostro.getVitaIniziale () - generaDannoP ());
             player.setVitaIniziale (player.getVitaIniziale () - generaDannoM ());
         }while(player.getVitaIniziale () > 0 || mostro.getVitaIniziale () > 0);
+        if (player.getVitaIniziale () <= 0) player.isAlive = false;
+        else player.isAlive = true;
 
     }
 

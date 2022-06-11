@@ -10,17 +10,18 @@ public class Mostro {
     int attaccoIniziale = 5;
     int difesaIniziale = 5;
     int arma;
-    int[] posizioneMostro = new int[2];
     String str = "Dijkstra";
 
-    public Mostro(String nomeMostro, int vitaIniziale, int attaccoIniziale, int difesaIniziale, int arma, int[] posizioneMostro) {
+    public Mostro(String nomeMostro, int vitaIniziale, int attaccoIniziale, int difesaIniziale, int arma) {
         this.nomeMostro = nomeMostro;
         this.vitaIniziale = vitaIniziale;
         this.attaccoIniziale = attaccoIniziale;
         this.difesaIniziale = difesaIniziale;
         this.arma = arma;
-        this.posizioneMostro = posizioneMostro;
+
     }
+
+
 
     public String getNomeMostro() {
         return nomeMostro;
@@ -35,11 +36,11 @@ public class Mostro {
         return vitaIniziale;
     }
 
-    public void setVitaIniziale(int vitaIniziale) {
+    public int setVitaIniziale(int vitaIniziale) {
         Random rnd1 = new Random ();
         int maxValVita = 25;
         int minValVita = 15;
-        this.vitaIniziale = rnd1.nextInt ((maxValVita - minValVita) + 1);
+        return this.vitaIniziale = rnd1.nextInt ((maxValVita - minValVita) + 1);
     }
 
     public int getAttaccoIniziale() {
@@ -68,14 +69,6 @@ public class Mostro {
         int minVal = 35;
         this.arma = rnd2.nextInt ((maxVal - minVal) + 1);
         return this.arma;
-    }
-
-    public int[] getPosizioneMostro() {
-        return posizioneMostro;
-    }
-
-    public void setPosizioneMostro(int[] posizioneMostro) {
-        this.posizioneMostro = posizioneMostro;
     }
 
     public static String findPermutations(String str)
@@ -119,8 +112,7 @@ public class Mostro {
     }
 
     public Mostro generaMostro(){
-        String nome = setNomeMostro ();
-        Mostro m = new Mostro (setNomeMostro (), this.vitaIniziale, this.attaccoIniziale, this.difesaIniziale, setArma (), this.posizioneMostro );
+        Mostro m = new Mostro (setNomeMostro (), setVitaIniziale (this.vitaIniziale), this.attaccoIniziale, this.difesaIniziale, setArma ());
         return m;
     }
 }

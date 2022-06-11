@@ -1,20 +1,34 @@
 package it.unibs.fp.mylib.esameArnaldo;
 
+import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
 public class Mappa {
-    public static char[][] creaMappa(String filename){
+    int numeroRighe;
+    int numeroColonne;
+
+    public static char[][] creaMappa(String filename, int numeroRighe, int numeroColonne){
         String tagCorrente="";
         char[][] mappa=new char [22][31];
         ArrayList<Character> riga=new ArrayList<Character> ();
-
         XMLInputFactory xmlif = null;
         XMLStreamReader xmlr = null;
+
+        for (int i = 0; i < xmlr.getAttributeCount (); i++){
+            if (xmlr.getLocalName ().equals ("width")){
+                numeroColonne = Integer.parseInt (xmlr.getAttributeValue (i));
+            }else if (xmlr.getLocalName ().equals ("height")){
+                numeroRighe = Integer.parseInt (xmlr.getAttributeValue (i));
+            }
+        }
 
         try{
             xmlif = XMLInputFactory.newInstance();
@@ -84,5 +98,21 @@ public class Mappa {
         }
         System.out.println("\nCaricamento completato!");
         return mappa;
+    }
+
+    public int getNumeroRighe() {
+        return numeroRighe;
+    }
+
+    public void setNumeroRighe(int numeroRighe) {
+        this.numeroRighe = numeroRighe;
+    }
+
+    public int getNumeroColonne() {
+        return numeroColonne;
+    }
+
+    public void setNumeroColonne(int numeroColonne) {
+        this.numeroColonne = numeroColonne;
     }
 }
