@@ -1,6 +1,10 @@
 package it.unibs.fp.mylib.esameArnaldo;
 
+
+
 import java.util.ArrayList;
+
+import static it.unibs.fp.mylib.esameArnaldo.Oggetti.*;
 
 public class Personaggio {
     String nome;
@@ -9,16 +13,18 @@ public class Personaggio {
     int valoreDifesaBase = 5;
     int[] posizione = new int[2];
     int potenza = 1;
-    //ArrayList<Oggetti> inventario = new ArrayList<Oggetti> ();
+    Oggetti.Arma arma = new Oggetti.Arma ("arma base", 1);
+    ArrayList<Oggetti> inventario = new ArrayList<Oggetti> ();
 
 
-    public Personaggio(String nome, int vitaIniziale, int valoreAttaccoBase, int valoreDifesaBase, int[] posizione, int potenza) {
+    public Personaggio(String nome, int vitaIniziale, int valoreAttaccoBase, int valoreDifesaBase, int[] posizione, int potenza, Oggetti.Arma arma) {
         this.nome = nome;
         this.vitaIniziale = vitaIniziale;
         this.valoreAttaccoBase = valoreAttaccoBase;
         this.valoreDifesaBase = valoreDifesaBase;
         this.posizione = posizione;
         this.potenza = potenza;
+        this.arma = arma;
     }
 
     public String getNome() {
@@ -65,6 +71,14 @@ public class Personaggio {
         this.potenza = potenza;
     }
 
+    public Oggetti.Arma getArma() {
+        return arma;
+    }
+
+    public void setArma(Oggetti.Arma arma) {
+        this.arma = arma;
+    }
+
     public void movimento(){
         Character lettera = null;
         switch (lettera){
@@ -81,4 +95,11 @@ public class Personaggio {
                 getPosizione ()[0] += 1;
         }
     }
+
+
+    public Personaggio generaPersonaggio(){
+        Personaggio p = new Personaggio (this.nome, this.vitaIniziale, this.valoreAttaccoBase, this.valoreDifesaBase, this.posizione, this.potenza, this.arma);
+        return p;
+    }
+
 }

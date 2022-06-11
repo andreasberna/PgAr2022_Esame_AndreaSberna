@@ -13,13 +13,22 @@ public class Mostro {
     int[] posizioneMostro = new int[2];
     String str = "Dijkstra";
 
+    public Mostro(String nomeMostro, int vitaIniziale, int attaccoIniziale, int difesaIniziale, int arma, int[] posizioneMostro) {
+        this.nomeMostro = nomeMostro;
+        this.vitaIniziale = vitaIniziale;
+        this.attaccoIniziale = attaccoIniziale;
+        this.difesaIniziale = difesaIniziale;
+        this.arma = arma;
+        this.posizioneMostro = posizioneMostro;
+    }
 
     public String getNomeMostro() {
         return nomeMostro;
     }
 
-    public void setNomeMostro(String nomeMostro) {
+    public String setNomeMostro() {
         this.nomeMostro = findPermutations (str) ;
+        return this.nomeMostro;
     }
 
     public int getVitaIniziale() {
@@ -53,11 +62,12 @@ public class Mostro {
         return arma;
     }
 
-    public void setArma(int arma) {
+    public int setArma() {
         Random rnd2 = new Random ();
         int maxVal = 55;
         int minVal = 35;
         this.arma = rnd2.nextInt ((maxVal - minVal) + 1);
+        return this.arma;
     }
 
     public int[] getPosizioneMostro() {
@@ -106,5 +116,11 @@ public class Mostro {
         Random rnd3 = new Random ();
 
         return partial.get (rnd3.nextInt (partial.size () + 1));
+    }
+
+    public Mostro generaMostro(){
+        String nome = setNomeMostro ();
+        Mostro m = new Mostro (setNomeMostro (), this.vitaIniziale, this.attaccoIniziale, this.difesaIniziale, setArma (), this.posizioneMostro );
+        return m;
     }
 }

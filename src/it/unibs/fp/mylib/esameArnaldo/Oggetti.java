@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Oggetti {
 
-    public class Arma extends Oggetti {
+    public static class Arma extends Oggetti {
         String[] nomiPredefiniti = {"Alabarda", "AsciaBipenne", "Falcetto", "Giavellotto", "Maglio", "Lancia", "Pugnale", "SpadaCorta", "Scimitarra", "MazzaFrusto", "MartelloLeggero", "Picca", "Randello", "Stocco", "Tridente", "SpadaLunga", "PicconeDaGuerra", "Mazza", "Falcione", "Frusta", "BastoneFerrato"};
         String nomeArma;
         int potenzaArma;

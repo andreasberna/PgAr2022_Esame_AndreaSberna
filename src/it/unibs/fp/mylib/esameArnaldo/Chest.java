@@ -13,8 +13,9 @@ public class Chest {
         return contenuto;
     }
 
-    public void setContenuto(Oggetti contenuto) {
+    public Oggetti setContenuto() {
         this.contenuto = contenuto.creaOggetto ();
+        return this.contenuto;
     }
 
     public int[] getPosizione() {
@@ -23,5 +24,10 @@ public class Chest {
 
     public void setPosizione(int[] posizione) {
         this.posizione = posizione;
+    }
+
+    public Chest generaChest(){
+        Chest cesta = new Chest (setContenuto (), this.posizione);
+        return cesta;
     }
 }
